@@ -1,0 +1,44 @@
+.header {
+    width: 100%;
+    background: #1c1c1c;
+
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+.headerNav {
+    display: flex;
+    flex-direction: row;
+    width: 383px;
+    gap: 49px;
+}
+
+.headerItem {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 200px;
+}
+
+.headerLink {
+    text-decoration: none;
+    color: inherit;
+    margin-left: 8px;
+    vertical-align: top;
+}
+
+.headerLink:hover {
+    color: #fff;
+    transition: color .3s ease-in;
+}
+
+.headerLogo {
+    height: 50px;
+    margin-right: 288px;
+    margin-left: 112px;
+}
