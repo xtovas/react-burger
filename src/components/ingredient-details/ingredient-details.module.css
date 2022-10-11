@@ -1,0 +1,18 @@
+.ingredient {
+    margin-left: 40px;
+    margin-top: 40px;
+}
+.image {
+  margin-left: 120px;
+}
+
+.ingredientTable {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 32px;
+}
+
+.ingredientTitle {
+    margin-bottom: 8px;
+}
