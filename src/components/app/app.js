@@ -3,18 +3,19 @@ import AppStyle from "./app.module.css";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { useState, useEffect } from "react";
+import { url } from "../../utils/constants";
+
 export default function App() {
   const [state, setState] = useState({
     isLoading: false,
     hasError: false,
-    data: [],
-    urlLink: "https://norma.nomoreparties.space/api/ingredients",
+    data: []
   });
   useEffect(() => {
     const getData = async () => {
       setState({ ...state, isLoading: true, hasError: false });
       try {
-        const res = await fetch(state.urlLink);
+        const res = await fetch(`${url}/ingredients`);
         if (res.ok) {
           const resData = await res.json();
           setState({ ...state, data: resData.data, isLoading: false });

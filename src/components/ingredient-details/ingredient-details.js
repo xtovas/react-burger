@@ -1,6 +1,6 @@
 import { FoodPropTypes } from "../../utils/data";
 import DetailsStyles from "./ingredient-details.module.css";
-
+import PropTypes from "prop-types";
 export default function IngredientDetails({ item }) {
   return (
     <div className={DetailsStyles.detailContainer}>
@@ -58,5 +58,5 @@ export default function IngredientDetails({ item }) {
 }
 
 IngredientDetails.propTypes = {
-  item: FoodPropTypes,
+  item: PropTypes.shape(FoodPropTypes), 
 };

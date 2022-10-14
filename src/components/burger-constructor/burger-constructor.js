@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { FoodPropTypes } from "../../utils/data";
 import { arrayOf } from "prop-types";
 import Modal from "../modal/modal";
@@ -12,8 +13,8 @@ import {
 import ConstructorStyles from "./burger-constructor.module.css";
 
 BurgerElement.propTypes = {
-  item: FoodPropTypes,
-};
+  item: PropTypes.shape(FoodPropTypes),
+}
 
 const BurgerConstructor = (props) => {
   const [state, setState] = useState({

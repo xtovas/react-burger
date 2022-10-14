@@ -43,4 +43,3 @@ export default function Modal({children, close, isOpen}) {
     isOpen: PropTypes.bool.isRequired,
     close: PropTypes.func.isRequired,
   };
-  
