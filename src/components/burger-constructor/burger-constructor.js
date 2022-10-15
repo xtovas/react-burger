@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { FoodPropTypes } from "../../utils/data";
 import { arrayOf } from "prop-types";
@@ -17,20 +18,19 @@ BurgerElement.propTypes = {
 }
 
 const BurgerConstructor = (props) => {
-  const [state, setState] = useState({
+  const [isOpen, setModal] = React.useState(false)
+  const close = ()=> {
+    setModal(false);
+  }
+  const openModal = () => {
+    setModal(true);
+  }
+  const [state] = useState({
     items: props.data.map((item) =>
       item.type !== "bun" ? <BurgerElement key={item._id} item={item} /> : ""
     ),
     bun: props.data.filter((item) => item.type === "bun"),
-    modalOpen: false,
   });
-
-  const modalSwitch = () => {
-    setState({
-      ...state,
-      modalOpen: !state.modalOpen,
-    });
-  };
 
   return (
     <div className={ConstructorStyles.orderContainer}>
@@ -42,13 +42,15 @@ const BurgerConstructor = (props) => {
           <span className="text text_type_digits-medium">610</span>
           <CurrencyIcon type="primary" />
         </p>
-        <Button type="primary" size="medium" onClick={modalSwitch}>
+        <Button type="primary" size="medium" onClick={openModal}>
           Оформить заказ
         </Button>
       </div>
-      <Modal isOpen={state.modalOpen} close={modalSwitch}>
+      {isOpen && (
+      <Modal close={close}>
         <OrderDetails />
-      </Modal>
+        </Modal>
+      )}
     </div>
   );
 };

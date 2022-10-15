@@ -21,9 +21,7 @@ export default function Modal({children, close, isOpen}) {
       }
     }, [isOpen, close]);
   
-    return (
-      isOpen &&
-      createPortal(
+    return createPortal(
         <div className={ModalStyles.modal}>
           <div className={ModalStyles.popup}>
             <div className={ModalStyles.close} onClick={close}>
@@ -35,7 +33,6 @@ export default function Modal({children, close, isOpen}) {
         </div>,
         modals
       )
-    );
   };
   
   Modal.propTypes = {
