@@ -29,7 +29,6 @@ import PropTypes from "prop-types";
      setState({
        ...state,
        modalOpen: !state.modalOpen,
-       pickedItem: props,
      });
    };
 
@@ -47,7 +46,7 @@ import PropTypes from "prop-types";
            Оформить заказ
          </Button>
        </div>
-       {state.pickedItem && (
+       {state.modalOpen && (
        <Modal isOpen={state.modalOpen} close={modalSwitch}>
          <OrderDetails />
        </Modal>

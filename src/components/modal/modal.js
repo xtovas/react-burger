@@ -22,8 +22,7 @@ import { ReactDOM } from "react";
        }
      }, [isOpen, close]);
 
-     return (
-       isOpen && createPortal(
+     return createPortal(
         <div className={ModalStyles.modal}>
           <div className={ModalStyles.popup}>
             <div className={ModalStyles.close} onClick={close}>
@@ -35,7 +34,6 @@ import { ReactDOM } from "react";
         </div>,
         modals
       )
-    );
   };
 
   Modal.propTypes = {

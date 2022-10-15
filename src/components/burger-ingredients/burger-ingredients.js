@@ -137,7 +137,7 @@ const TabsItem = (props) => {
           size="default"
         ></Counter>
       </div>
-      {state.pickedItem && (
+      {state.modalOpen && (
         <Modal isOpen={state.modalOpen} close={() => modalSwitch(props.item)}>
           <IngredientDetails item={state.pickedItem} />
         </Modal>
