@@ -13,7 +13,8 @@ import PropTypes from "prop-types";
  import ConstructorStyles from "./burger-constructor.module.css";
 
  BurgerElement.propTypes = {
-   item: PropTypes.shape(FoodPropTypes),
+   item: PropTypes.shape(FoodPropTypes).isRequired,
+   ingredients: PropTypes.func,
  };
 
  const BurgerConstructor = (props) => {
@@ -77,5 +78,5 @@ import PropTypes from "prop-types";
  }
 
  BurgerConstructor.propTypes = {
-   data: arrayOf(FoodPropTypes).isRequired,
+   data: PropTypes.arrayOf(FoodPropTypes).isRequired,
  };

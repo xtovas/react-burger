@@ -3,7 +3,7 @@ import AppStyle from "./app.module.css";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { useState, useEffect } from "react";
-import { url } from "../../utils/constants";
+import { API_URL } from "../../utils/constants";
 
 export default function App() {
   const [state, setState] = useState({
@@ -15,7 +15,7 @@ export default function App() {
     const getData = async () => {
       setState({ ...state, isLoading: true, hasError: false });
       try {
-        const res = await fetch(`${url}/ingredients`);
+        const res = await fetch(`${API_URL}/ingredients`);
         if (res.ok) {
           const resData = await res.json();
           setState({ ...state, data: resData.data, isLoading: false });

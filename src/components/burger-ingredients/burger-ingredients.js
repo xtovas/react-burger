@@ -5,6 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 import { FoodPropTypes } from "../../utils/data";
+import PropTypes from "prop-types";
 import IngredientStyles from "./burger-ingredients.module.css";
 import { arrayOf } from "prop-types";
 import IngredientDetails from "../ingredient-details/ingredient-details";
@@ -22,7 +23,7 @@ export default function BurgerIngredients(props) {
 }
 
 BurgerIngredients.propTypes = {
-  data: arrayOf(FoodPropTypes).isRequired,
+  data: PropTypes.arrayOf(FoodPropTypes).isRequired,
 };
 
 const MenuNav = () => {
@@ -77,7 +78,7 @@ const Tabs = (props) => {
 };
 
 Tabs.propTypes = {
-  data: arrayOf(FoodPropTypes).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const TabsCategory = (props) => {
@@ -94,7 +95,7 @@ const TabsCategory = (props) => {
 };
 
 TabsCategory.propTypes = {
-  data: arrayOf(FoodPropTypes).isRequired,
+  data: PropTypes.arrayOf(FoodPropTypes).isRequired,
 };
 
 const TabsItem = (props) => {
@@ -145,3 +146,7 @@ const TabsItem = (props) => {
     </>
   );
 };
+
+TabsItem.propTypes = {
+  item: PropTypes.shape(FoodPropTypes).isRequired,
+}

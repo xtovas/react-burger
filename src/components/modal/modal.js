@@ -7,20 +7,18 @@ import { ReactDOM } from "react";
  import ModalStyles from "./modal.module.css";
  const modals = document.querySelector("#modals");
 
- export default function Modal({children, close, isOpen}) {
+ export default function Modal({children, close}) {
      useEffect(() => {
        const handleEsc = (evt) => {
          if (evt.key === "Escape") {
            close();
          }
        };
-       if (isOpen) {
-         document.addEventListener("keydown", handleEsc);
-         return () => {
-           document.removeEventListener("keydown", handleEsc);
-         };
+       document.addEventListener("keydown", handleEsc);
+       return () => {
+        document.removeEventListener("keydown", handleEsc);
        }
-     }, [isOpen, close]);
+     }, [close]);
 
      return createPortal(
         <div className={ModalStyles.modal}>
@@ -38,6 +36,5 @@ import { ReactDOM } from "react";
 
   Modal.propTypes = {
     children: PropTypes.node.isRequired,
-    isOpen: PropTypes.bool.isRequired,
     close: PropTypes.func.isRequired,
   };

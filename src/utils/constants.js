@@ -1,4 +1,4 @@
-export const url = "https://norma.nomoreparties.space/api";
+export const API_URL = "https://norma.nomoreparties.space/api";
 
 export const checkResponce = (res) => {
     if (res.ok) {
