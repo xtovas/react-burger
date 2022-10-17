@@ -7,24 +7,9 @@ import React from "react";
 import { FoodPropTypes } from "../../utils/data";
 import PropTypes from "prop-types";
 import IngredientStyles from "./burger-ingredients.module.css";
-import { arrayOf } from "prop-types";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
 import { useState } from "react";
-
-export default function BurgerIngredients(props) {
-  return (
-    <div className={IngredientStyles.heading}>
-      <h1 className="text text_type_main-large">Соберите бургер</h1>
-      <MenuNav></MenuNav>
-      <Tabs data={props.data}></Tabs>
-    </div>
-  );
-}
-
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(FoodPropTypes).isRequired,
-};
 
 const MenuNav = () => {
   const [current, setCurrent] = React.useState("one");
@@ -78,7 +63,7 @@ const Tabs = (props) => {
 };
 
 Tabs.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
 };
 
 const TabsCategory = (props) => {
@@ -95,7 +80,8 @@ const TabsCategory = (props) => {
 };
 
 TabsCategory.propTypes = {
-  data: PropTypes.arrayOf(FoodPropTypes).isRequired,
+  data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
+  category: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired
 };
 
 const TabsItem = (props) => {
@@ -148,5 +134,19 @@ const TabsItem = (props) => {
 };
 
 TabsItem.propTypes = {
-  item: PropTypes.shape(FoodPropTypes).isRequired,
+  item: FoodPropTypes.isRequired,
 }
+
+export default function BurgerIngredients(props) {
+  return (
+    <div className={IngredientStyles.heading}>
+      <h1 className="text text_type_main-large">Соберите бургер</h1>
+      <MenuNav/>
+      <Tabs data={props.data}></Tabs>
+    </div>
+  );
+}
+
+BurgerIngredients.propTypes = {
+  data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
+};

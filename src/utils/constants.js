@@ -1,8 +1,15 @@
-export const API_URL = "https://norma.nomoreparties.space/api";
 
-export const checkResponce = (res) => {
+export const NORMA_API = `https://norma.nomoreparties.space/api`;
+  
+const getIngredients=(NORMA_API) => {
+   return fetch(`${NORMA_API}/ingredients`)
+    .then(checkResponse);
+}
+const checkResponse = (res) => {
     if (res.ok) {
-      return res.json();
+        return res.json();
     }
-    return Promise.reject(`Ошибка ${res.status}`);
+    return  Promise.reject(`Что-то пошло не так: ${res.status}`);
   };
+
+export {getIngredients};

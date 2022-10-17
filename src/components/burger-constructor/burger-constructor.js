@@ -1,7 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
  import { FoodPropTypes } from "../../utils/data";
- import { arrayOf } from "prop-types";
  import Modal from "../modal/modal";
  import OrderDetails from "../order-details/order-details";
  import {
@@ -11,11 +10,6 @@ import PropTypes from "prop-types";
    CurrencyIcon,
  } from "@ya.praktikum/react-developer-burger-ui-components";
  import ConstructorStyles from "./burger-constructor.module.css";
-
- BurgerElement.propTypes = {
-   item: PropTypes.shape(FoodPropTypes).isRequired,
-   ingredients: PropTypes.func,
- };
 
  const BurgerConstructor = (props) => {
    const [state, setState] = useState({
@@ -38,6 +32,7 @@ import PropTypes from "prop-types";
        {state.bun[0] ? <BurgerElement item={state.bun[0]} type="top" /> : ""}
        <ul className={ConstructorStyles.orderContent}>{state.items}</ul>
        {state.bun[0] ? <BurgerElement item={state.bun[0]} type="bottom" /> : ""}
+
        <div className={ConstructorStyles.priceContainer}>
          <p className={ConstructorStyles.price}>
            <span className="text text_type_digits-medium">610</span>
@@ -48,7 +43,7 @@ import PropTypes from "prop-types";
          </Button>
        </div>
        {state.modalOpen && (
-       <Modal isOpen={state.modalOpen} close={modalSwitch}>
+       <Modal close={modalSwitch}>
          <OrderDetails />
        </Modal>
        )}
@@ -76,7 +71,11 @@ import PropTypes from "prop-types";
      </li>
    );
  }
+ BurgerElement.propTypes = {
+  item: FoodPropTypes.isRequired,
+  ingredients: FoodPropTypes.isRequired
+};
 
  BurgerConstructor.propTypes = {
-   data: PropTypes.arrayOf(FoodPropTypes).isRequired,
+   data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
  };
