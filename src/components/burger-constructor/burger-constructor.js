@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
  import { FoodPropTypes } from "../../utils/data";
  import Modal from "../modal/modal";
  import OrderDetails from "../order-details/order-details";
@@ -53,27 +53,27 @@ import PropTypes from "prop-types";
 
  export default BurgerConstructor;
 
- function BurgerElement(ingredients) {
+function BurgerElement(props) {
    return (
      <li className={ConstructorStyles.item}>
-       {ingredients.item.type !== "bun" ? (
+       {props.item.type !== "bun" ? (
          <DragIcon type="primary"></DragIcon>
        ) : (
          <span></span>
        )}
        <ConstructorElement
-         type={ingredients.item.type === "bun" ? ingredients.type : ""}
-         isLocked={ingredients.item.type === "bun"}
-         text={ingredients.item.name}
-         price={ingredients.item.price}
-         thumbnail={ingredients.item.image}
+         type={props.item.type === "bun" ? props.type : ""}
+         isLocked={props.item.type === "bun"}
+         text={props.item.name+ (props.type === 'top' ? '\n(верх)' : '') + (props.type === 'bottom' ? '\n(низ)' : '')}
+         price={props.item.price}
+         thumbnail={props.item.image}
        ></ConstructorElement>
      </li>
    );
  }
  BurgerElement.propTypes = {
   item: FoodPropTypes.isRequired,
-  ingredients: FoodPropTypes.isRequired
+  type: PropTypes.oneOf(["bun", "top", "bottom"])
 };
 
  BurgerConstructor.propTypes = {

@@ -81,7 +81,7 @@ const TabsCategory = (props) => {
 
 TabsCategory.propTypes = {
   data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
-  category: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired
+  category: PropTypes.string.isRequired,
 };
 
 const TabsItem = (props) => {
@@ -137,7 +137,7 @@ TabsItem.propTypes = {
   item: FoodPropTypes.isRequired,
 }
 
-export default function BurgerIngredients(props) {
+function BurgerIngredients(props) {
   return (
     <div className={IngredientStyles.heading}>
       <h1 className="text text_type_main-large">Соберите бургер</h1>
@@ -150,3 +150,5 @@ export default function BurgerIngredients(props) {
 BurgerIngredients.propTypes = {
   data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
 };
+
+export default BurgerIngredients

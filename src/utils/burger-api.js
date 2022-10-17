@@ -1,7 +1,7 @@
 
 export const NORMA_API = `https://norma.nomoreparties.space/api`;
   
-const getIngredients=(NORMA_API) => {
+const getIngredients=() => {
    return fetch(`${NORMA_API}/ingredients`)
     .then(checkResponse);
 }

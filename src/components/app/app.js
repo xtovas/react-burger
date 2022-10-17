@@ -3,28 +3,27 @@ import AppStyle from "./app.module.css";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { useState, useEffect } from "react";
-import { getIngredients, sendOrder } from "../../utils/constants";
-import { NORMA_API } from "../../utils/constants";
+import { getIngredients } from "../../utils/burger-api";
+
 export default function App() {
   const [state, setState] = useState({
-    isLoading: false,
+    isLoading: true,
     hasError: false,
-    data: []
+    data: null
   });
   useEffect(() => {
     const getData = async () => {
-      setState({ ...state, isLoading: true, hasError: false });
+      setState((prevState) => ({ ...prevState, isLoading: true }));
+  
       try {
-        const res = await fetch(`${NORMA_API}/ingredients`);
-        if(!res.ok) return Promise.reject(`Что-то пошло не так: ${res.status}`);
-
-        const resData = await res.json();
-        setState((prevState) => ({ ...prevState, data: resData.data, isLoading: false }));
-
+        const res = await getIngredients();
+  
+        setState({ data: res.data, isLoading: false, hasError: false });
       } catch {
-        setState((prevState) => ({ ...prevState, loading: false,  hasError: true }));
+        setState((prevState) => ({ ...prevState, isLoading: false, hasError: true }));
       }
     };
+  
     getData();
   }, []);
 
