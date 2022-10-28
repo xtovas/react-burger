@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types"
+import React from "react";
  import { FoodPropTypes } from "../../utils/data";
  import Modal from "../modal/modal";
  import OrderDetails from "../order-details/order-details";
@@ -11,11 +12,11 @@ import PropTypes from "prop-types"
  } from "@ya.praktikum/react-developer-burger-ui-components";
  import ConstructorStyles from "./burger-constructor.module.css";
 import { ConstructorContext } from "../../services/api-context";
-
+import { priceCounter, priceInitialState } from "../../utils/price-changer";
 
  const BurgerConstructor = () => {
   const {orderFood, setOrderFood} = useContext(ConstructorContext);
-
+  const [costState, costDispatcher] = React.useReducer(priceCounter, priceInitialState);
    const [state, setState] = useState({
      items: orderFood.items.map((item) =>
        item.type !== "bun" ? <BurgerElement key={item._id} item={item} /> : ""
@@ -25,14 +26,7 @@ import { ConstructorContext } from "../../services/api-context";
    });
 
    useEffect(() => {
-    let total = 0;
-    orderFood.items.forEach((item) => {
-      total += +item.price;
-    });
-    setOrderFood({
-      ...orderFood,
-      totalPrice: total
-    })
+    orderFood.items.forEach(item => costDispatcher({type: "addition", payload: item.price}))
    }, [setOrderFood]);
   
    const modalSwitch = () => {
@@ -50,7 +44,7 @@ import { ConstructorContext } from "../../services/api-context";
 
        <div className={ConstructorStyles.priceContainer}>
          <p className={ConstructorStyles.price}>
-           <span className="text text_type_digits-medium">{orderFood.totalPrice}</span>
+           <span className="text text_type_digits-medium">{costState.count}</span>
            <CurrencyIcon type="primary" />
          </p>
          <Button type="primary" size="medium" onClick={modalSwitch}>
