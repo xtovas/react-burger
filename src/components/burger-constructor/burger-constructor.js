@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types"
  import { FoodPropTypes } from "../../utils/data";
  import Modal from "../modal/modal";
@@ -10,16 +10,31 @@ import PropTypes from "prop-types"
    CurrencyIcon,
  } from "@ya.praktikum/react-developer-burger-ui-components";
  import ConstructorStyles from "./burger-constructor.module.css";
+import { ConstructorContext } from "../../services/api-context";
 
- const BurgerConstructor = (props) => {
+
+ const BurgerConstructor = () => {
+  const {orderFood, setOrderFood} = useContext(ConstructorContext);
+
    const [state, setState] = useState({
-     items: props.data.map((item) =>
+     items: orderFood.items.map((item) =>
        item.type !== "bun" ? <BurgerElement key={item._id} item={item} /> : ""
      ),
-     bun: props.data.filter((item) => item.type === "bun"),
-     modalOpen: false,
+     bun: orderFood.items.filter((item) => item.type === "bun"),
+     modalOpen: false
    });
 
+   useEffect(() => {
+    let total = 0;
+    orderFood.items.forEach((item) => {
+      total += +item.price;
+    });
+    setOrderFood({
+      ...orderFood,
+      totalPrice: total
+    })
+   }, [setOrderFood]);
+  
    const modalSwitch = () => {
      setState({
        ...state,
@@ -35,7 +50,7 @@ import PropTypes from "prop-types"
 
        <div className={ConstructorStyles.priceContainer}>
          <p className={ConstructorStyles.price}>
-           <span className="text text_type_digits-medium">610</span>
+           <span className="text text_type_digits-medium">{orderFood.totalPrice}</span>
            <CurrencyIcon type="primary" />
          </p>
          <Button type="primary" size="medium" onClick={modalSwitch}>
@@ -44,7 +59,9 @@ import PropTypes from "prop-types"
        </div>
        {state.modalOpen && (
        <Modal close={modalSwitch}>
+        <ConstructorContext.Provider value={{ orderFood, setOrderFood }}>
          <OrderDetails />
+         </ConstructorContext.Provider>
        </Modal>
        )}
      </div>
@@ -76,6 +93,6 @@ function BurgerElement(props) {
   type: PropTypes.oneOf(["bun", "top", "bottom"])
 };
 
- BurgerConstructor.propTypes = {
+/* BurgerConstructor.propTypes = {
    data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
- };
+ };*/

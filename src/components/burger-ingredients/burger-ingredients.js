@@ -118,11 +118,10 @@ const TabsItem = (props) => {
         >
           {props.item.name}
         </h3>
-        <Counter
-          className={IngredientStyles.counter}
-          count={1}
+        {props.item.count &&
+        <Counter count={props.item.count}
           size="default"
-        ></Counter>
+        ></Counter>}
       </div>
       {state.modalOpen && (
         <Modal isOpen={state.modalOpen} close={() => modalSwitch(props.item)}>
