@@ -86,7 +86,3 @@ function BurgerElement(props) {
   item: FoodPropTypes.isRequired,
   type: PropTypes.oneOf(["bun", "top", "bottom"])
 };
-
-/* BurgerConstructor.propTypes = {
-   data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
- };*/

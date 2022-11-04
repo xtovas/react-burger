@@ -5,7 +5,7 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { useState, useEffect } from "react";
 import { getIngredients } from "../../utils/burger-api";
 import { ConstructorContext } from "../../services/api-context";
-
+import { IngredientContext } from "../../services/ingredient-context";
 export default function App() {
   const [state, setState] = useState({
     isLoading: true,
@@ -53,7 +53,9 @@ export default function App() {
       ) : (
         <>
           <main className={AppStyle.container}>
-            <BurgerIngredients data={data} />
+            <IngredientContext.Provider value={{data}}>
+            <BurgerIngredients /*data={data}*/ />
+            </IngredientContext.Provider>
             <ConstructorContext.Provider value={{ orderFood, setOrderFood }}>
             <BurgerConstructor data={data} />
             </ConstructorContext.Provider>

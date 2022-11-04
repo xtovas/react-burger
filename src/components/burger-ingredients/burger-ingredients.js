@@ -1,17 +1,18 @@
 import {
-  Tab,
+  /*Tab,*/
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import { useState, useContext } from "react";
 import { FoodPropTypes } from "../../utils/data";
+import { MenuNav } from "./tabs/burger-ingredients_tabs";
 import PropTypes from "prop-types";
 import IngredientStyles from "./burger-ingredients.module.css";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
-import { useState } from "react";
+import { IngredientContext } from "../../services/ingredient-context";
 
-const MenuNav = () => {
+/*const MenuNav = () => {
   const [current, setCurrent] = React.useState("one");
   return (
     <div className={IngredientStyles.tabs}>
@@ -41,33 +42,35 @@ const MenuNav = () => {
       </Tab>
     </div>
   );
-};
+};*/
 
-const Tabs = (props) => {
+const Tabs = (/*props*/) => {
   return (
     <div className={IngredientStyles.tabContainer}>
+      <MenuNav></MenuNav>
       <div className={IngredientStyles.tabContent}>
         <h2 className="text text_type_main-medium">Булки</h2>
-        {<TabsCategory category="bun" data={props.data} />}
+        {<TabsCategory category="bun" /*data={props.data}*/ />}
       </div>
       <div className={IngredientStyles.tabContent}>
         <h2 className="text text_type_main-medium">Соусы</h2>
-        {<TabsCategory category="sauce" data={props.data} />}
+        {<TabsCategory category="sauce" /*data={props.data*/ />}
       </div>
       <div className={IngredientStyles.tabContent}>
         <h2 className="text text_type_main-medium">Начинки</h2>
-        {<TabsCategory category="main" data={props.data} />}
+        {<TabsCategory category="main" /*data={props.data}*/ />}
       </div>
     </div>
   );
 };
 
-Tabs.propTypes = {
+/*/Tabs.propTypes = {
   data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
-};
+};*/
 
 const TabsCategory = (props) => {
-  const items = props.data.filter(function (category) {
+  const {data} = useContext(IngredientContext);
+  const items = data.filter(function(category) {
     return category.type === props.category;
   });
   return (
@@ -80,7 +83,7 @@ const TabsCategory = (props) => {
 };
 
 TabsCategory.propTypes = {
-  data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
+  /*data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,*/
   category: PropTypes.string.isRequired,
 };
 
@@ -136,18 +139,18 @@ TabsItem.propTypes = {
   item: FoodPropTypes.isRequired,
 }
 
-function BurgerIngredients(props) {
+function BurgerIngredients(/*props*/) {
   return (
     <div className={IngredientStyles.heading}>
       <h1 className="text text_type_main-large">Соберите бургер</h1>
-      <MenuNav/>
-      <Tabs data={props.data}></Tabs>
+      
+      <Tabs /*data={props.data}*/></Tabs>
     </div>
   );
 }
 
-BurgerIngredients.propTypes = {
+/*BurgerIngredients.propTypes = {
   data: PropTypes.arrayOf(FoodPropTypes.isRequired).isRequired,
-};
+};*/
 
 export default BurgerIngredients

@@ -3,7 +3,7 @@
     margin-top: 73px;
 }
 
-.tabs {
+/*.tabs {
     width: 100%;
     display: flex;
     margin-top: 20px;
@@ -11,7 +11,7 @@
 
 .tabName {
     width: 200px;
-}
+}*/
 
 .tabContainer {
     max-height: 756px;
