@@ -1,7 +1,7 @@
-import { FoodPropTypes } from "../../utils/data";
 import DetailsStyles from "./ingredient-details.module.css";
-import PropTypes from "prop-types";
-export default function IngredientDetails({ item }) {
+import { FoodPropTypes } from "../../utils/data";
+
+export default function IngredientDetails(props) {
   return (
     <div className={DetailsStyles.detailContainer}>
       <h1 className={`${DetailsStyles.ingredient} text text_type_main-large`}>
@@ -10,12 +10,12 @@ export default function IngredientDetails({ item }) {
       <div className={DetailsStyles.imageContainer}>
         <img
           className={DetailsStyles.image}
-          src={item.image_large}
-          alt={item.name}
+          src={props.item.image_large}
+          alt={props.item.name}
         />
       </div>
       <p className={`${DetailsStyles.caption} text text_type_main-medium`}>
-        {item.name}
+        {props.item.name}
       </p>
       <div
         className={`${DetailsStyles.ingredientTable} text text_type_main-small text_color_inactive`}
@@ -26,7 +26,7 @@ export default function IngredientDetails({ item }) {
           >
             Калории,ккал
           </p>
-          <p className="text text_type_digits-default">{item.calories}</p>
+          <p className="text text_type_digits-default">{props.item.calories}</p>
         </div>
         <div className={DetailsStyles.table}>
           <p
@@ -34,7 +34,7 @@ export default function IngredientDetails({ item }) {
           >
             Белки, г
           </p>
-          <p className="text text_type_digits-default">{item.proteins}</p>
+          <p className="text text_type_digits-default">{props.item.proteins}</p>
         </div>
         <div className={DetailsStyles.table}>
           <p
@@ -42,7 +42,7 @@ export default function IngredientDetails({ item }) {
           >
             Жиры, г
           </p>
-          <p className="text text_type_digits-default">{item.fat}</p>
+          <p className="text text_type_digits-default">{props.item.fat}</p>
         </div>
         <div className={DetailsStyles.table}>
           <p
@@ -50,7 +50,9 @@ export default function IngredientDetails({ item }) {
           >
             Углеводы, г
           </p>
-          <p className="text text_type_digits-default">{item.carbohydrates}</p>
+          <p className="text text_type_digits-default">
+            {props.item.carbohydrates}
+          </p>
         </div>
       </div>
     </div>
@@ -58,5 +60,5 @@ export default function IngredientDetails({ item }) {
 }
 
 IngredientDetails.propTypes = {
-  item: FoodPropTypes.isRequired, 
+  item: FoodPropTypes.isRequired,
 };

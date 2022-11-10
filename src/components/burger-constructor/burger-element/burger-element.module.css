@@ -1,0 +1,13 @@
+.item {
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 16px;
+    padding-right: 3px;
+}
+
+.drag {
+    cursor: move;
+}

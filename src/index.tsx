@@ -1,15 +1,31 @@
-
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/app/app';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { apiReducer } from './services/reducers/api-reducer';
+import { cartReducer } from './services/reducers/cart';
+import { itemReducer } from './services/reducers/item';
+import { orderReducer } from './services/reducers/order';
+import { combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const rootReducer = combineReducers({
+  menu: apiReducer,
+  cart: cartReducer,
+  item: itemReducer,
+  order: orderReducer
+});
+
+const store = configureStore({reducer: rootReducer})
+
 root.render(
- <React.StrictMode>
-    <App />
-  </React.StrictMode>
+      <Provider store={store}>
+          <App />
+      </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

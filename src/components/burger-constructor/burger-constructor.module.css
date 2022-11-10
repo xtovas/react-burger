@@ -1,8 +1,3 @@
-.orderContainer {
-    min-width: 600px;
-    margin-top: 123px;
-}
-
 .orderContent {
     overflow-y: scroll;
     max-height: 464px;
@@ -10,37 +5,30 @@
     margin-top: 0;
 }
 
-.orderContent::-webkit-scrollbar {
-    width: 8px;
-}
-
-.orderContent::-webkit-scrollbar-track {
-    background: #2F2F37;
-}
-
-.orderContent::-webkit-scrollbar-thumb {
-    background-color: #8585AD;
-}
-
-.item {
-    display: flex;
-    cursor: pointer;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    padding-bottom: 16px;
-    padding-right: 3px;
-}
-
 .priceContainer {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
+    align-items: center;
 }
-
 .price {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-right: 41px;
+}
+
+.items {
+    transition: all 0.3s;
+    height: 700px;
+}
+
+.active {
+    opacity: 0.3;
+}
+
+.orderContainer {
+    transition: all 0.3s;
+    height: 700px;
+    width: 645px;
+    margin-top: 123px;
 }

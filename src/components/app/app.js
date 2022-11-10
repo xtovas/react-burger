@@ -1,67 +1,48 @@
 import AppHeader from "../app-header/app-header";
-import AppStyle from "./app.module.css";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
-import { useState, useEffect } from "react";
-import { getIngredients } from "../../utils/burger-api";
-import { ConstructorContext } from "../../services/api-context";
-import { IngredientContext } from "../../services/ingredient-context";
-export default function App() {
-  const [state, setState] = useState({
-    isLoading: true,
-    hasError: false,
-    data: null
+import { useEffect } from "react";
+import AppStyle from "./app.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchIngredients } from "../../services/actions/api-reducer";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
+function App() {
+  const dispatch = useDispatch();
+  const menu = useSelector((state) => {
+    return state.menu;
   });
 
-  const [orderFood, setOrderFood] = useState({
-    items: null,
-    totalPrice: 0,
-    orderNumber: null
-  })
-  
   useEffect(() => {
-    const getData = async () => {
-      setState((prevState) => ({ ...prevState, isLoading: true }));
-  
-      try {
-        const res = await getIngredients();
-        setOrderFood({
-          ...orderFood,
-          items: [res.data[0], res.data[7], res.data[2], res.data[3], res.data[8]]
-        })
-        setState({ data: res.data, isLoading: false, hasError: false });
-      } 
-      catch {
-        setState((prevState) => ({ ...prevState, isLoading: false, hasError: true }));
-      }
-    };
-    getData();
-  }, []);
-
-
-  const { data } = state;
+    dispatch(fetchIngredients());
+  }, [dispatch]);
 
   return (
     <div className={AppStyle.appBody}>
       <AppHeader />
-      {state.isLoading || state.hasError ? (
-        <div className={AppStyle.loading}>
-          <p className="text text_type_main-large text_color_inactive">
-            Загрузка<span className={AppStyle.dotFlashing}></span>
-          </p>
+      {!menu.items.success && !menu.loadingFailed && (
+        <div className={`${AppStyle.loading} text text_type_main-medium`}>
+          Загрузка ...
         </div>
-      ) : (
-        <>
-          <main className={AppStyle.container}>
-            <IngredientContext.Provider value={{data}}>
-            <BurgerIngredients /*data={data}*/ />
-            </IngredientContext.Provider>
-            <ConstructorContext.Provider value={{ orderFood, setOrderFood }}>
-            <BurgerConstructor data={data} />
-            </ConstructorContext.Provider>
-          </main>
-        </>
       )}
+      {menu.loadingFailed && (
+        <div className={`${AppStyle.loading} text text_type_main-medium`}>
+          Ошибка.
+        </div>
+      )}
+      <main className={AppStyle.container}>
+        {menu.items.success && (
+          <div className={AppStyle.blocks}>
+            <DndProvider backend={HTML5Backend}>
+              <BurgerIngredients />
+              <BurgerConstructor />
+            </DndProvider>
+          </div>
+        )}
+      </main>
     </div>
   );
 }
+
+export default App;
