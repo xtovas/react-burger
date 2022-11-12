@@ -17,7 +17,7 @@ export function cartReducer(state = initialState, action) {
         let foodInCart = state.cart.find((item) => item.type === "bun");
         if (foodInCart) {
           const tempBasket = state.cart.filter(
-            (i) => i.type !== action.item.type
+            (item) => item.type !== action.item.type
           );
           return {
             ...state,

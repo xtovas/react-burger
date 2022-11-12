@@ -14,7 +14,7 @@ import {
 } from "../../services/reducers/cart";
 import { useDrop } from "react-dnd";
 import { BurgerElement } from "./burger-element/burger-element";
-import {v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ function BurgerConstructor() {
       active: monitor.isOver(),
     }),
     drop(item) {
-      item = {...item, uuid: uuidv4()};
+      item = { ...item, uuid: uuidv4() };
       dispatch({
         type: ADD_TO_CART,
         item,
@@ -67,7 +67,7 @@ function BurgerConstructor() {
     const ingredients = [];
     orderItems.forEach(function (item) {
       for (let amount = 0; amount < item.count; amount++) {
-        ingredients.push(item._id);
+        /*ingredients.push(item._id);*/ //заказ срабатывает только при наличии булки
         if (item.type === "bun") ingredients.push(item._id);
       }
     });
@@ -104,6 +104,11 @@ function BurgerConstructor() {
             Оформить заказ
           </Button>
         )}
+        {order.hasFailed && ( /* если нет булки, то появится просьба ее выбрать */
+          <Button type="primary" size="medium" disabled="disabled">   
+            Выберите булку.
+          </Button>
+        )} 
       </div>
       <Modal
         isOpen={order.orderPopup}

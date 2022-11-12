@@ -33,7 +33,7 @@ export function Tabs() {
             if (scroll < place[1]) {
                 dispatch({
                     type: CHANGE_TAB,
-                    currentTab: 'buns'
+                    currentTab: 'buns' //более говорящие имена
                 })
             } else {
                 dispatch({
@@ -61,7 +61,7 @@ export function Tabs() {
         <Tab
           className={TabStyles.tabName}
           value="1"
-          active={current === "buns"}
+          active={current === "buns"} //
           onClick={() => MenuNav({ selected: "0" })}
         >
           Булки

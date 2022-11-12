@@ -16,7 +16,7 @@ export function BurgerElement(props) {
   const bunRef = useRef();
 
  const [, dropItem] = useDrop({
-    accept: "items",
+    accept: "card", //нашла здесь 1 ошибку, вместо card было items, из-за этого не работал перенос внутри контейнера
     drop: (item) => {
       dispatch({
         type: FILTER,
