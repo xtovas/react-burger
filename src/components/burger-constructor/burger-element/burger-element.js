@@ -15,7 +15,7 @@ export function BurgerElement(props) {
   const IngredientRef = useRef();
   const bunRef = useRef();
 
-  const [, dropItem] = useDrop({
+ const [, dropItem] = useDrop({
     accept: "items",
     drop: (item) => {
       dispatch({

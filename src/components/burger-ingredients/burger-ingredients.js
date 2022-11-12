@@ -21,7 +21,7 @@ export function TabsCategory(props) {
           <TabsItem
             key={item._id}
             item={item}
-            basketCart={cart.cart.find((i) => i._id === item._id)}
+            basketCart={cart.cart.filter((i) => i._id === item._id)}
           />
         );
       })}

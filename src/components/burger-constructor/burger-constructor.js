@@ -14,6 +14,7 @@ import {
 } from "../../services/reducers/cart";
 import { useDrop } from "react-dnd";
 import { BurgerElement } from "./burger-element/burger-element";
+import {v4 as uuidv4} from "uuid";
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function BurgerConstructor() {
   const items = orderItems.map(function (item, index) {
     return item.type !== "bun" ? (
       <BurgerElement
-        key={item._id}
+        key={item.uuid}
         item={item}
         index={index}
         deleteItem={() => dispatch({ type: DELETE_FROM_CART, item })}
@@ -38,6 +39,7 @@ function BurgerConstructor() {
       ""
     );
   });
+
   const bun = orderItems.find((item) => {
     return item.type === "bun";
   });
@@ -53,6 +55,7 @@ function BurgerConstructor() {
       active: monitor.isOver(),
     }),
     drop(item) {
+      item = {...item, uuid: uuidv4()};
       dispatch({
         type: ADD_TO_CART,
         item,

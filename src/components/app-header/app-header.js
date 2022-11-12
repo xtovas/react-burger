@@ -1,4 +1,3 @@
-import "@ya.praktikum/react-developer-burger-ui-components";
 import {
   Logo,
   BurgerIcon,

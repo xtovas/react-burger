@@ -29,28 +29,24 @@ export function Tabs() {
       Navigation.current.scrollTop =
         place[props.selected] - Navigation.current.offsetTop;
     } else {
-      if (scroll < place[1]) {
-        dispatch({
-          type: CHANGE_TAB,
-          currentTab: "1",
-        });
-      } else {
-        dispatch({
-          type: CHANGE_TAB,
-          currentTab: "2",
-        });
-      }
-      if (scroll < place[2]) {
-        dispatch({
-          type: CHANGE_TAB,
-          currentTab: "2",
-        });
-      } else {
-        dispatch({
-          type: CHANGE_TAB,
-          currentTab: "3",
-        });
-      }
+        if (scroll < place[2]) {
+            if (scroll < place[1]) {
+                dispatch({
+                    type: CHANGE_TAB,
+                    currentTab: 'buns'
+                })
+            } else {
+                dispatch({
+                    type: CHANGE_TAB,
+                    currentTab: 'sauces'
+                })
+            }
+        } else {
+            dispatch({
+                type: CHANGE_TAB,
+                currentTab: 'stuffings'
+            })
+        }
     }
   };
 
@@ -65,7 +61,7 @@ export function Tabs() {
         <Tab
           className={TabStyles.tabName}
           value="1"
-          active={current === "1"}
+          active={current === "buns"}
           onClick={() => MenuNav({ selected: "0" })}
         >
           Булки
@@ -73,7 +69,7 @@ export function Tabs() {
         <Tab
           className={TabStyles.tabName}
           value="2"
-          active={current === "2"}
+          active={current === "sauces"}
           onClick={() => MenuNav({ selected: "1" })}
         >
           Соусы
@@ -81,7 +77,7 @@ export function Tabs() {
         <Tab
           className={TabStyles.tabName}
           value="3"
-          active={current === "3"}
+          active={current === "stuffings"}
           onClick={() => MenuNav({ selected: "2" })}
         >
           Начинки

@@ -29,58 +29,32 @@ export function cartReducer(state = initialState, action) {
             cart: [...state.cart, { ...action.item, count: 1 }],
           };
         }
+      }
+      else {
+        return {
+            ...state,
+            cart: [ ...state.cart, { ...action.item, count:1 } ]
+        }
       } 
     }
-    case SET_AMOUNT: {
-        let foodInCart = state.cart.find((i) => i._id === action.item._id);
-        if (foodInCart) {
-          state.cart.map((item) => {
-            if (item._id === action.item._id) {
-              item.count++;
-            }
-            return state;
-          });
-          return {
-            ...state,
-          };
-        } else {
-          return {
-            ...state,
-            cart: [...state.cart, { ...action.item, count: 1 }],
-          };
-        }
-    }
-    case DELETE_FROM_CART: {
-      if (action.item.count > 1) {
-        state.cart.map((item) => {
-          if (item._id === action.item._id) {
-            item.count--;
-          }
-          return state;
-        });
-        return {
-          ...state,
-        };
-      } else {
-        return {
-          ...state,
-          cart: state.cart.filter((item) => item._id !== action.item._id),
-        };
-      }
+    case DELETE_FROM_CART: 
+    return {
+        ...state,
+        cart: state.cart.filter(item => item.uuid !== action.item.uuid)
     }
     case FILTER: {
-      let tempBasket = [...state.cart];
-      tempBasket[action.index] = tempBasket.splice(
-        state.cart.indexOf(action.item),
-        1,
-        tempBasket[action.index]
-      )[0];
-      return {
-        ...state,
-        cart: tempBasket,
-      };
-      /*falls through*/
-    }
+        let tempBasket = [...state.cart];
+        tempBasket[action.index] = tempBasket.splice(
+          state.cart.indexOf(action.item),
+          1,
+          tempBasket[action.index]
+        )[0];
+        return {
+          ...state,
+          cart: tempBasket,
+        };
+        /*falls through*/
+      }
     case EMPTY_CART: {
       return {
         ...state,
@@ -89,3 +63,5 @@ export function cartReducer(state = initialState, action) {
     }
   }
 }
+
+

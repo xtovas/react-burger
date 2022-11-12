@@ -17,7 +17,7 @@ export const TabsItem = (props) => {
       opacity: monitor.isDragging() ? 0.5 : 1,
     }),
   });
-
+  const count = props.basketCart.length;
   return (
       <div
         className={ItemStyles.item}
@@ -37,9 +37,9 @@ export const TabsItem = (props) => {
         <h3 className={`${ItemStyles.item_title} text text_type_main-default`}>
           {props.item.name}
         </h3>
-        {props.basketCart && (
-          <Counter count={props.basketCart.count} size="default" />
-        )}
+        {count !== 0 ?
+          <Counter count={count} size="default" /> : ''
+        }
       </div>
   );
 };

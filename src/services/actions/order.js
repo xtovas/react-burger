@@ -19,10 +19,11 @@ export function sendOrder(body) {
             dispatch({ type: ORDER_FAILED });
           }
         })
-        .catch(() =>
-          dispatch({
-            type: ORDER_FAILED,
-          })
-        );
-    };
+        .catch(() => {
+            dispatch({type: ORDER_FAILED});
+            setTimeout(() => {
+                dispatch({type: CLEAR_ORDER});
+            }, 3000);
+    });
+    }
   }
