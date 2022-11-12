@@ -1,0 +1,34 @@
+.orderContent {
+    overflow-y: scroll;
+    max-height: 464px;
+    padding-left: 0px;
+    margin-top: 0;
+}
+
+.priceContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 41px;
+}
+
+.items {
+    transition: all 0.3s;
+    height: 700px;
+}
+
+.active {
+    opacity: 0.3;
+}
+
+.orderContainer {
+    transition: all 0.3s;
+    height: 700px;
+    width: 645px;
+    margin-top: 123px;
+}

@@ -1,0 +1,12 @@
+.heading {
+    max-width: 645px;
+    margin-top: 73px;
+}
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 32px;
+    margin-right: 10px;
+    margin-top: 24px;
+}

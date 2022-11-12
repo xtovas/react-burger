@@ -1,0 +1,29 @@
+.tabs {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.tabName {
+    width: 200px;
+}
+.tabContainer {
+    max-height: 756px;
+    overflow-y: scroll;
+}
+
+.tabContainer::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tabContainer::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+
+.tabContainer::-webkit-scrollbar-thumb {
+    background-color: #8585ad;
+}
+.tabContent  {
+    margin-top: 40px;
+}
