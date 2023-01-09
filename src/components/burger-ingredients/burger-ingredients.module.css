@@ -1,0 +1,71 @@
+.heading {
+    max-width: 645px;
+    margin-top: 73px;
+}
+
+/*.tabs {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+}
+
+.tabName {
+    width: 200px;
+}*/
+
+.tabContainer {
+    max-height: 756px;
+    overflow-y: scroll;
+}
+
+.tabContainer::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tabContainer::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+
+.tabContainer::-webkit-scrollbar-thumb {
+    background-color: #8585ad;
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 56px;
+    row-gap: 32px;
+    margin-right: 10px;
+    margin-top: 24px;
+}
+
+.item {
+    width: 272px;
+    height: 208px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item_price {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+}
+
+.tabContent  {
+    margin-top: 40px;
+}
+
+p {
+    text-align: center;
+}
+
+.counter {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }

@@ -1,0 +1,16 @@
+.appBody {
+    width: 100%;
+    max-width: 1920px;
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    gap: 60px;
+}
